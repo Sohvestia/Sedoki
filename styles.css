@@ -19,7 +19,6 @@
 }
 /* Root palette */
 :root {
-  --color-black: #000000;
   --color-cream: #f9f9e0;
   --color-white: #ffffff;
   --color-gold: #cda05a;
@@ -35,6 +34,10 @@
   font-family: "Poppins", sans-serif;
   box-sizing: border-box;
 }
+html {
+  overscroll-behavior: none;
+  background-color: var(--color-cream);
+}
 
 body {
   width: 100%;
@@ -43,7 +46,7 @@ body {
 
 .header {
   width: 100%;
-  min-height: 100vh;
+  min-height: auto;
   background-color: #f9f9e0;
   background-size: cover;
   background-position: center;
@@ -205,7 +208,7 @@ nav {
 /* ============ Recommended Products Carousel ============ */
 .recommended {
   padding: 80px 5% 80px;
-  background-color: var(--color-white);
+  background-color: white;
 }
 
 .recommended h2 {
@@ -229,11 +232,11 @@ nav {
   font-family: "PoppinsBold", sans-serif;
   font-size: 30px;
   margin-bottom: 10px;
-  color: var(--color-white);
+  color: white;
 }
 .recommended-1 .section-sub {
   text-align: center;
-  color: var(--color-white);
+  color: white;
   margin-bottom: 150px;
 }
 
@@ -277,15 +280,15 @@ nav {
 .carousel-arrow {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.55);
+  transform: translateY(-60%);
+  background: rgba(0, 0, 0, 0.5);
   border: none;
   color: #fff;
-  width: 42px;
-  height: 42px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 25 px;
   z-index: 10;
   display: flex;
   align-items: center;
@@ -297,17 +300,25 @@ nav {
   color: #000;
 }
 .carousel-arrow.prev {
-  left: -10px;
+  left: -25px;
 }
 .carousel-arrow.next {
-  right: -10px;
+  right: -25px;
 }
 .carousel-dots {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 10px;
-  margin-top: 20px;
+
+  margin: 20px auto 0;
+  width: fit-content;
+  padding: 6px 12px;
+
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
 }
+
 .carousel-dot {
   width: 10px;
   height: 10px;
@@ -318,10 +329,10 @@ nav {
   cursor: pointer;
   transition: background 0.3s ease;
 }
-.carousel-dot.active {
-  background: var(--color-gold);
-}
 
+.carousel-dot.active {
+  background: rgb(255, 179, 28);
+}
 /* ============ Back to Top button ============ */
 #backToTop {
   position: fixed;
@@ -358,7 +369,7 @@ nav {
 
 /* ============ Site Footer ============ */
 .site-footer {
-  background: var(--color-black);
+  background: black;
   color: #ccc;
 }
 .footer-grid {

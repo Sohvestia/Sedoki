@@ -193,13 +193,7 @@ function initAccountTabs() {
     if (formEl) {
       formEl.addEventListener("submit", (e) => {
         e.preventDefault();
-<<<<<<< HEAD
         alert("Sirvir Irrur");
-=======
-        alert(
-          "This is a demo form \u2014 account creation isn't connected to a server yet.",
-        );
->>>>>>> cfc630c38ef665e75bba91191aeccc442d1369fe
       });
     }
   });
