@@ -172,7 +172,7 @@ document.addEventListener(
 function productCardHtml(p, { index = 0, carousel = false } = {}) {
   const attrs = carousel
     ? 'class="product-card carousel-item"'
-    : `class="product-card" data-reveal style="--d: ${Math.min(index, 8) * 70}ms"`;
+    : `class="product-card" data-reveal style="--d: ${Math.min(index, 6) * 50}ms"`;
   return `
     <article ${attrs} data-id="${p.id}">
       <a class="product-link" href="${productUrl(p)}">
@@ -193,7 +193,7 @@ function observeReveals() {
     Array.from(parent.children).forEach((child, i) => {
       if (child.hasAttribute("data-reveal")) return;
       child.setAttribute("data-reveal", "");
-      child.style.setProperty("--d", `${Math.min(i, 6) * 90}ms`);
+      child.style.setProperty("--d", `${Math.min(i, 5) * 60}ms`);
     });
   });
 
@@ -263,11 +263,8 @@ function initSaleMarquee() {
     const p = findProduct(id);
     return `<a href="${productUrl(p)}"><strong>${escapeHtml(p.name)}</strong> <em>${SALES[id]}% OFF</em></a>`;
   });
-  const message = `<span class="marquee-label">On sale now</span>${items.join(sep)}${sep}`;
-  const group = (hidden) =>
-    `<div class="marquee-group"${hidden ? ' aria-hidden="true"' : ""}>${message.repeat(2)}</div>`;
 
-  el.innerHTML = `<div class="marquee-track">${group(false)}${group(true)}</div>`;
+  el.innerHTML = items.join(sep) + sep;
 }
 
 function fillCarousels() {
@@ -426,6 +423,7 @@ function initCatalog() {
   const preset = (key) =>
     params.getAll(key).flatMap((v) => v.split(",")).map((v) => v.trim().toLowerCase());
   searchInput.value = (params.get("q") || "").trim();
+  document.getElementById("onSaleOnly").checked = params.get("sale") === "1";
   [
     ["category", preset("category")],
     ["brand", preset("brand")],

@@ -15,6 +15,27 @@
       /></a>
       <div class="navbar">
         <ul>
+          <li class="search-item">
+            <form class="search-container" action="shop.html" method="GET">
+              <input
+                type="search"
+                name="q"
+                placeholder="Search catalog, products..."
+                class="search-input"
+              />
+              <button type="submit" class="search-btn" aria-label="Search">
+                <svg
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="11" cy="11" r="7"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+              </button>
+            </form>
+          </li>
           <li><a href="main.html" class="active">HOME</a></li>
           <li><a href="shop.html">CATALOG</a></li>
           <li><a href="support.html">SUPPORT</a></li>
@@ -46,30 +67,51 @@
       </div>
     </nav>
 
-    <div class="sale-marquee" id="saleMarquee" role="region" aria-label="Sale announcement"></div>
+    <div class="sale-marquee">
+      <a class="marquee-btn" href="shop.html?sale=1">On sale now</a>
+      <marquee id="saleMarquee" scrollamount="6"></marquee>
+    </div>
 
     <section class="recommended-1">
       <h2 data-reveal>Best Sellers</h2>
-      <p class="section-sub" data-reveal style="--d: 100ms">Best seller because they're the best in terms of price and performance!</p>
+      <p class="section-sub" data-reveal style="--d: 100ms">
+        Best seller because they're the best in terms of price and performance!
+      </p>
       <div class="carousel" data-reveal style="--d: 200ms">
-        <button class="carousel-arrow prev" aria-label="Previous slide">&#10094;</button>
+        <button class="carousel-arrow prev" aria-label="Previous slide">
+          &#10094;
+        </button>
         <div class="carousel-viewport">
-          <div class="carousel-track" data-products="zero2,redlion,ew200,7hz71,zonie"></div>
+          <div
+            class="carousel-track"
+            data-products="zero2,redlion,ew200,7hz71,zonie"
+          ></div>
         </div>
-        <button class="carousel-arrow next" aria-label="Next slide">&#10095;</button>
+        <button class="carousel-arrow next" aria-label="Next slide">
+          &#10095;
+        </button>
         <div class="carousel-dots"></div>
       </div>
     </section>
 
     <section class="recommended cream">
       <h2 data-reveal>Budget Picks</h2>
-      <p class="section-sub" data-reveal style="--d: 100ms">Great sound that won't break the bank</p>
+      <p class="section-sub" data-reveal style="--d: 100ms">
+        Great sound that won't break the bank
+      </p>
       <div class="carousel" data-reveal style="--d: 200ms">
-        <button class="carousel-arrow prev" aria-label="Previous slide">&#10094;</button>
+        <button class="carousel-arrow prev" aria-label="Previous slide">
+          &#10094;
+        </button>
         <div class="carousel-viewport">
-          <div class="carousel-track" data-products="zero2,redlion,chu2,jm6,st12"></div>
+          <div
+            class="carousel-track"
+            data-products="zero2,redlion,chu2,jm6,st12"
+          ></div>
         </div>
-        <button class="carousel-arrow next" aria-label="Next slide">&#10095;</button>
+        <button class="carousel-arrow next" aria-label="Next slide">
+          &#10095;
+        </button>
         <div class="carousel-dots"></div>
       </div>
     </section>

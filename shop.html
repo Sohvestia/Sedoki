@@ -46,29 +46,24 @@
       </div>
     </nav>
 
-    <div class="sale-marquee" id="saleMarquee" role="region" aria-label="Sale announcement"></div>
-
-    <section class="shop-hero">
-      <h1 data-reveal>Catalog</h1>
-      <p data-reveal style="--d: 100ms">
-        Discover our wide range of high-quality audio products.
-      </p>
-    </section>
+    <div class="sale-marquee">
+      <a class="marquee-btn" href="shop.html?sale=1">On sale now</a>
+      <marquee id="saleMarquee" scrollamount="6"></marquee>
+    </div>
 
     <main class="catalog-layout">
-      <div class="catalog-main">
-        <p class="search-status" hidden></p>
-        <div class="product-grid" id="productGrid"></div>
-        <p class="no-results" hidden>
-          No products matched your filters. Try different options or
-          <button type="button" class="link-btn" id="noResultsReset">
-            reset all filters</button
-          >.
-        </p>
-      </div>
-
-      <aside class="filter-sidebar" id="filterSidebar" data-reveal="right" aria-label="Catalog filters">
-        <button type="button" class="filter-toggle" id="filterToggle" aria-expanded="true" aria-controls="filterPanel">
+      <aside
+        class="filter-sidebar"
+        id="filterSidebar"
+        aria-label="Catalog filters"
+      >
+        <button
+          type="button"
+          class="filter-toggle"
+          id="filterToggle"
+          aria-expanded="true"
+          aria-controls="filterPanel"
+        >
           Filters
         </button>
         <form class="filter-panel" id="filterPanel" autocomplete="off">
@@ -82,7 +77,12 @@
                 placeholder="Search products..."
               />
               <button type="button" class="search-btn" aria-label="Search">
-                <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
                   <circle cx="11" cy="11" r="7"></circle>
                   <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                 </svg>
@@ -103,17 +103,39 @@
           <fieldset class="filter-group">
             <legend class="filter-title">Price (&#8369;)</legend>
             <div class="price-range">
-              <input type="number" id="priceMin" min="0" step="50" placeholder="Min" aria-label="Minimum price" />
+              <input
+                type="number"
+                id="priceMin"
+                min="0"
+                step="50"
+                placeholder="Min"
+                aria-label="Minimum price"
+              />
               <span>&ndash;</span>
-              <input type="number" id="priceMax" min="0" step="50" placeholder="Max" aria-label="Maximum price" />
+              <input
+                type="number"
+                id="priceMax"
+                min="0"
+                step="50"
+                placeholder="Max"
+                aria-label="Maximum price"
+              />
             </div>
           </fieldset>
 
           <fieldset class="filter-group">
             <legend class="filter-title">Availability</legend>
             <div class="filter-options">
-              <label class="check"><input type="checkbox" id="inStockOnly" /><span>In stock only</span></label>
-              <label class="check"><input type="checkbox" id="onSaleOnly" /><span>On sale only</span></label>
+              <label class="check"
+                ><input type="checkbox" id="inStockOnly" /><span
+                  >In stock only</span
+                ></label
+              >
+              <label class="check"
+                ><input type="checkbox" id="onSaleOnly" /><span
+                  >On sale only</span
+                ></label
+              >
             </div>
           </fieldset>
 
@@ -127,9 +149,31 @@
             </select>
           </div>
 
-          <button type="button" class="filter-reset" id="filterReset">Reset filters</button>
+          <button type="button" class="filter-reset" id="filterReset">
+            Reset filters
+          </button>
         </form>
       </aside>
+
+      <div class="catalog-content">
+        <section class="shop-hero">
+          <h1 data-reveal>Catalog</h1>
+          <p data-reveal style="--d: 100ms">
+            Discover our wide range of high-quality audio products.
+          </p>
+        </section>
+
+        <div class="catalog-main">
+          <p class="search-status" hidden></p>
+          <div class="product-grid" id="productGrid"></div>
+          <p class="no-results" hidden>
+            No products matched your filters. Try different options or
+            <button type="button" class="link-btn" id="noResultsReset">
+              reset all filters</button
+            >.
+          </p>
+        </div>
+      </div>
     </main>
 
     <footer class="site-footer">
