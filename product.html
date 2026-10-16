@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product - Sedoki</title>
+    <link rel="icon" href="img-main/logo.png" type="image/png" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <nav>
+      <a href="main.html"
+        ><img src="img-main/name.png" class="logo" alt="Sedoki"
+      /></a>
+      <div class="navbar">
+        <ul>
+          <li><a href="main.html">HOME</a></li>
+          <li><a href="shop.html" class="active">CATALOG</a></li>
+          <li><a href="support.html">SUPPORT</a></li>
+          <li><a href="account.html">ACCOUNT</a></li>
+          <li class="cart-item">
+            <button
+              type="button"
+              id="cartToggle"
+              class="cart-nav-btn"
+              aria-label="Open cart"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="9" cy="21" r="1"></circle>
+                <circle cx="20" cy="21" r="1"></circle>
+                <path
+                  d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
+                ></path>
+              </svg>
+              CART
+              <span class="cart-count">0</span>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main class="product-page" id="productPage">
+      <a href="shop.html" class="back-link" data-reveal>&larr; Back to catalog</a>
+      <div id="productDetail"></div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-grid" data-stagger>
+        <div class="footer-brand">
+          <img src="img-main/logo.png" alt="Sedoki logo" />
+          <div>
+            <h3>Sedoki</h3>
+            <p>
+              Sedoki is your online retailer for headphones, IEMs, DACs, and
+              cables. Founded on the belief that great sound should be
+              affordable and built to last.
+            </p>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="shop.html">Full Catalog</a></li>
+            <li><a href="shop.html?category=IEM">IEMs</a></li>
+            <li><a href="shop.html?category=DAC">DACs</a></li>
+            <li><a href="cart.html">Your Cart</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="support.html">FAQ</a></li>
+            <li><a href="support.html#contact">Contact Us</a></li>
+            <li><a href="support.html#shipping">Shipping &amp; Returns</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Account</h4>
+          <ul>
+            <li><a href="account.html">Sign In</a></li>
+            <li><a href="account.html#create">Create Account</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">&copy; 2026 Sedoki. All rights reserved.</div>
+    </footer>
+
+    <!-- Cart drawer (slide-in mini cart) -->
+    <div id="cartOverlay" class="cart-overlay"></div>
+    <aside id="cartDrawer" class="cart-drawer">
+      <div class="cart-drawer-header">
+        <h3>Your Cart</h3>
+        <button
+          id="closeCartDrawer"
+          class="cart-drawer-close"
+          aria-label="Close cart"
+        >
+          &times;
+        </button>
+      </div>
+      <div id="cartDrawerItems" class="cart-drawer-items"></div>
+      <div class="cart-drawer-footer">
+        <div class="cart-subtotal-row">
+          <span>Subtotal</span>
+          <span id="cartDrawerSubtotal">&#8369;0.00</span>
+        </div>
+        <a href="cart.html" class="btn-view-cart">View Full Cart</a>
+        <button type="button" id="drawerCheckoutBtn" class="btn-checkout">
+          Checkout
+        </button>
+      </div>
+    </aside>
+
+    <button id="backToTop" aria-label="Back to top">&#8593;</button>
+  </body>
+</html>
