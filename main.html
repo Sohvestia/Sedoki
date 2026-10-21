@@ -13,7 +13,19 @@
       <a href="main.html"
         ><img src="img-main/name.png" class="logo" alt="Sedoki"
       /></a>
-      <div class="navbar">
+      <button
+        type="button"
+        class="nav-toggle"
+        id="navToggle"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+        aria-controls="navMenu"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="navbar" id="navMenu">
         <ul>
           <li class="search-item">
             <form class="search-container" action="shop.html" method="GET">
@@ -40,30 +52,30 @@
           <li><a href="shop.html">CATALOG</a></li>
           <li><a href="support.html">SUPPORT</a></li>
           <li><a href="account.html">ACCOUNT</a></li>
-          <li class="cart-item">
-            <button
-              type="button"
-              id="cartToggle"
-              class="cart-nav-btn"
-              aria-label="Open cart"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <circle cx="9" cy="21" r="1"></circle>
-                <circle cx="20" cy="21" r="1"></circle>
-                <path
-                  d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
-                ></path>
-              </svg>
-              CART
-              <span class="cart-count">0</span>
-            </button>
-          </li>
         </ul>
+      </div>
+      <div class="nav-cart">
+        <button
+          type="button"
+          id="cartToggle"
+          class="cart-nav-btn"
+          aria-label="Open cart"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path
+              d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
+            ></path>
+          </svg>
+          CART
+          <span class="cart-count">0</span>
+        </button>
       </div>
     </nav>
 
@@ -74,10 +86,10 @@
 
     <section class="recommended-1">
       <h2 data-reveal>Best Sellers</h2>
-      <p class="section-sub" data-reveal style="--d: 100ms">
+      <p class="section-sub" data-reveal style="--d: 60ms">
         Best seller because they're the best in terms of price and performance!
       </p>
-      <div class="carousel" data-reveal style="--d: 200ms">
+      <div class="carousel" data-reveal style="--d: 120ms">
         <button class="carousel-arrow prev" aria-label="Previous slide">
           &#10094;
         </button>
@@ -96,10 +108,10 @@
 
     <section class="recommended cream">
       <h2 data-reveal>Budget Picks</h2>
-      <p class="section-sub" data-reveal style="--d: 100ms">
+      <p class="section-sub" data-reveal style="--d: 60ms">
         Great sound that won't break the bank
       </p>
-      <div class="carousel" data-reveal style="--d: 200ms">
+      <div class="carousel" data-reveal style="--d: 120ms">
         <button class="carousel-arrow prev" aria-label="Previous slide">
           &#10094;
         </button>
@@ -117,7 +129,7 @@
     </section>
 
     <footer class="site-footer">
-      <div class="footer-grid" data-stagger>
+      <div class="footer-grid">
         <div class="footer-brand">
           <img src="img-main/logo.png" alt="Sedoki logo" />
           <div>

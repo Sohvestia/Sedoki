@@ -13,36 +13,48 @@
       <a href="main.html"
         ><img src="img-main/name.png" class="logo" alt="Sedoki"
       /></a>
-      <div class="navbar">
+      <button
+        type="button"
+        class="nav-toggle"
+        id="navToggle"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+        aria-controls="navMenu"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="navbar" id="navMenu">
         <ul>
           <li><a href="main.html">HOME</a></li>
           <li><a href="shop.html" class="active">CATALOG</a></li>
           <li><a href="support.html">SUPPORT</a></li>
           <li><a href="account.html">ACCOUNT</a></li>
-          <li class="cart-item">
-            <button
-              type="button"
-              id="cartToggle"
-              class="cart-nav-btn"
-              aria-label="Open cart"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <circle cx="9" cy="21" r="1"></circle>
-                <circle cx="20" cy="21" r="1"></circle>
-                <path
-                  d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
-                ></path>
-              </svg>
-              CART
-              <span class="cart-count">0</span>
-            </button>
-          </li>
         </ul>
+      </div>
+      <div class="nav-cart">
+        <button
+          type="button"
+          id="cartToggle"
+          class="cart-nav-btn"
+          aria-label="Open cart"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path
+              d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
+            ></path>
+          </svg>
+          CART
+          <span class="cart-count">0</span>
+        </button>
       </div>
     </nav>
 
@@ -51,8 +63,435 @@
       <div id="productDetail"></div>
     </main>
 
+    <div class="product-data" hidden>
+      <template data-spec="zero2">
+        <table class="spec-table">
+          <tbody>
+            <tr>
+              <th scope="row">Driver</th>
+              <td>1 × 10 mm dual-cavity dynamic, PU + metal composite diaphragm</td>
+            </tr>
+            <tr>
+              <th scope="row">Impedance</th>
+              <td>32 Ω</td>
+            </tr>
+            <tr>
+              <th scope="row">Frequency response</th>
+              <td>10 Hz–20 kHz</td>
+            </tr>
+            <tr>
+              <th scope="row">Connector</th>
+              <td>0.78 mm 2-pin, detachable</td>
+            </tr>
+            <tr>
+              <th scope="row">Plug</th>
+              <td>3.5 mm</td>
+            </tr>
+            <tr>
+              <th scope="row">Cable</th>
+              <td>Silver-plated oxygen-free copper, coaxial</td>
+            </tr>
+            <tr>
+              <th scope="row">Mic</th>
+              <td>None on the 3.5 mm no mic version</td>
+            </tr>
+            <tr>
+              <th scope="row">Shell</th>
+              <td>Plastic (resin) shell with stainless steel faceplate</td>
+            </tr>
+            <tr>
+              <th scope="row">THD</th>
+              <td>&lt; 1% at 1 kHz</td>
+            </tr>
+            <tr>
+              <th scope="row">Distortion (measured)</th>
+              <td>Negligible up to 114 dB SPL; SINAD close to 80 dB at 94 dB SPL (Audio Science Review, GRAS 45CA)</td>
+            </tr>
+          </tbody>
+        </table>
+      </template>
+
+      <template data-spec="redlion">
+        <table class="spec-table">
+          <tbody>
+            <tr>
+              <th scope="row">Driver</th>
+              <td>Single 10 mm dynamic, enhanced PET diaphragm</td>
+            </tr>
+            <tr>
+              <th scope="row">Impedance</th>
+              <td>20 Ω ±20% @ 1 kHz</td>
+            </tr>
+            <tr>
+              <th scope="row">Sensitivity</th>
+              <td>113.5 dB ±3 dB @ 1 kHz</td>
+            </tr>
+            <tr>
+              <th scope="row">Frequency response</th>
+              <td>20 Hz–20 kHz</td>
+            </tr>
+            <tr>
+              <th scope="row">Connector</th>
+              <td>0.78 mm 2-pin, detachable</td>
+            </tr>
+            <tr>
+              <th scope="row">Plug</th>
+              <td>3.5 mm single-ended (Type-C version also available)</td>
+            </tr>
+            <tr>
+              <th scope="row">Cable</th>
+              <td>Silver-plated OFC, 1.2 m ±5%</td>
+            </tr>
+            <tr>
+              <th scope="row">Mic</th>
+              <td>With or without mic, depending on version</td>
+            </tr>
+            <tr>
+              <th scope="row">THD</th>
+              <td>&lt; 3% at 100 Hz–5 kHz</td>
+            </tr>
+          </tbody>
+        </table>
+      </template>
+
+      <template data-spec="ew200">
+        <table class="spec-table">
+          <tbody>
+            <tr>
+              <th scope="row">Driver</th>
+              <td>10 mm dual-magnetic-circuit, dual-cavity dynamic, SCP (silicon crystal polymer) diaphragm</td>
+            </tr>
+            <tr>
+              <th scope="row">Impedance</th>
+              <td>16 Ω ±15% @ 1 kHz</td>
+            </tr>
+            <tr>
+              <th scope="row">Sensitivity</th>
+              <td>126 dB/Vrms @ 1 kHz</td>
+            </tr>
+            <tr>
+              <th scope="row">Frequency response</th>
+              <td>10 Hz–50 kHz (effective 20 Hz–20 kHz)</td>
+            </tr>
+            <tr>
+              <th scope="row">Connector</th>
+              <td>0.78 mm 2-pin, detachable</td>
+            </tr>
+            <tr>
+              <th scope="row">Plug</th>
+              <td>3.5 mm (Type-C DSP edition also available)</td>
+            </tr>
+            <tr>
+              <th scope="row">Cable</th>
+              <td>High-purity silver-plated OFC</td>
+            </tr>
+            <tr>
+              <th scope="row">Shell</th>
+              <td>Metal alloy</td>
+            </tr>
+          </tbody>
+        </table>
+      </template>
+
+      <template data-spec="7hz71">
+        <table class="spec-table">
+          <tbody>
+            <tr>
+              <th scope="row">DAC chip</th>
+              <td>AKM AK4377</td>
+            </tr>
+            <tr>
+              <th scope="row">Sampling rate</th>
+              <td>Up to 32-bit / 384 kHz PCM</td>
+            </tr>
+            <tr>
+              <th scope="row">THD+N</th>
+              <td>&lt; 0.0004%</td>
+            </tr>
+            <tr>
+              <th scope="row">Frequency response</th>
+              <td>20 Hz–40 kHz</td>
+            </tr>
+            <tr>
+              <th scope="row">Output power</th>
+              <td>70 mW @ 32 Ω</td>
+            </tr>
+            <tr>
+              <th scope="row">Output voltage</th>
+              <td>1 Vrms @ 32 Ω</td>
+            </tr>
+            <tr>
+              <th scope="row">Input</th>
+              <td>USB-C, fixed (non-detachable) cable</td>
+            </tr>
+            <tr>
+              <th scope="row">Output</th>
+              <td>3.5 mm single-ended</td>
+            </tr>
+            <tr>
+              <th scope="row">Cable</th>
+              <td>4-core, 36-strand OCC copper</td>
+            </tr>
+            <tr>
+              <th scope="row">Power</th>
+              <td>Powered by the host device, no battery</td>
+            </tr>
+            <tr>
+              <th scope="row">Compatibility</th>
+              <td>Android 5.1 or higher; Apple devices supported</td>
+            </tr>
+          </tbody>
+        </table>
+      </template>
+
+      <template data-spec="zonie">
+        <table class="spec-table">
+          <tbody>
+            <tr>
+              <th scope="row">Material</th>
+              <td>16-core silver-plated copper (SPC)</td>
+            </tr>
+            <tr>
+              <th scope="row">Length</th>
+              <td>1.25 m</td>
+            </tr>
+            <tr>
+              <th scope="row">Connector</th>
+              <td>0.78 mm 2-pin, MMCX or recessed 2-pin (QDC), depending on version</td>
+            </tr>
+            <tr>
+              <th scope="row">Plug</th>
+              <td>3.5 mm, 2.5 mm balanced or 4.4 mm balanced, depending on version</td>
+            </tr>
+            <tr>
+              <th scope="row">Design</th>
+              <td>Braided, with pre-shaped ear hooks and a cable slider</td>
+            </tr>
+          </tbody>
+        </table>
+      </template>
+
+      <template data-spec="chu2">
+        <table class="spec-table">
+          <tbody>
+            <tr>
+              <th scope="row">Driver</th>
+              <td>10 mm dynamic, aluminum-magnesium alloy composite dome diaphragm</td>
+            </tr>
+            <tr>
+              <th scope="row">Impedance</th>
+              <td>18 Ω ±15% @ 1 kHz</td>
+            </tr>
+            <tr>
+              <th scope="row">Sensitivity</th>
+              <td>119 dB/Vrms @ 1 kHz</td>
+            </tr>
+            <tr>
+              <th scope="row">Frequency response</th>
+              <td>15 Hz–38 kHz (effective 20 Hz–20 kHz, IEC 60318-4, −3 dB)</td>
+            </tr>
+            <tr>
+              <th scope="row">Connector</th>
+              <td>0.78 mm 2-pin, detachable</td>
+            </tr>
+            <tr>
+              <th scope="row">Plug</th>
+              <td>3.5 mm</td>
+            </tr>
+            <tr>
+              <th scope="row">Shell</th>
+              <td>Cast metal alloy</td>
+            </tr>
+          </tbody>
+        </table>
+      </template>
+
+      <template data-spec="jm6">
+        <table class="spec-table">
+          <tbody>
+            <tr>
+              <th scope="row">DAC chip</th>
+              <td>Conexant CX31993</td>
+            </tr>
+            <tr>
+              <th scope="row">Amplifier chip</th>
+              <td>Maxim MAX97220</td>
+            </tr>
+            <tr>
+              <th scope="row">Sampling rate</th>
+              <td>Up to 32-bit / 384 kHz PCM</td>
+            </tr>
+            <tr>
+              <th scope="row">SNR</th>
+              <td>&gt; 124 dB</td>
+            </tr>
+            <tr>
+              <th scope="row">Dynamic range</th>
+              <td>&gt; 111 dB</td>
+            </tr>
+            <tr>
+              <th scope="row">Crosstalk</th>
+              <td>−110 dB</td>
+            </tr>
+            <tr>
+              <th scope="row">Distortion</th>
+              <td>−95 dB</td>
+            </tr>
+            <tr>
+              <th scope="row">Frequency response</th>
+              <td>20 Hz–40 kHz</td>
+            </tr>
+            <tr>
+              <th scope="row">Input</th>
+              <td>USB-C</td>
+            </tr>
+            <tr>
+              <th scope="row">Output</th>
+              <td>3.5 mm (female)</td>
+            </tr>
+            <tr>
+              <th scope="row">Mic</th>
+              <td>Supports in-line CTIA headset mic</td>
+            </tr>
+            <tr>
+              <th scope="row">Shell</th>
+              <td>Metal</td>
+            </tr>
+            <tr>
+              <th scope="row">Size and weight</th>
+              <td>110 mm ±10 mm, 6 g</td>
+            </tr>
+          </tbody>
+        </table>
+      </template>
+
+      <template data-spec="st12">
+        <table class="spec-table">
+          <tbody>
+            <tr>
+              <th scope="row">Material</th>
+              <td>8-strand 4N high-purity OFC, silver-plated, 22 AWG</td>
+            </tr>
+            <tr>
+              <th scope="row">Length</th>
+              <td>1.2 m</td>
+            </tr>
+            <tr>
+              <th scope="row">Connector</th>
+              <td>2-pin, MMCX or recessed 2-pin (QDC), depending on version</td>
+            </tr>
+            <tr>
+              <th scope="row">Plug</th>
+              <td>3.5 mm or 4.4 mm balanced, depending on version</td>
+            </tr>
+          </tbody>
+        </table>
+      </template>
+
+      <!--
+        COPYRIGHT DISCLAIMER: The videos embedded below are the property of their
+        respective owners and are shown from YouTube for educational purposes only.
+        No copyright infringement is intended. All rights belong to the original creators.
+      -->
+      <template data-video="zero2">
+        <iframe
+          class="video-frame"
+          src="https://www.youtube.com/embed/rZfnQXV5fog"
+          title="7Hz x Crinacle Salnotes Zero:2 video"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+      </template>
+
+      <template data-video="redlion">
+        <iframe
+          class="video-frame"
+          src="https://www.youtube.com/embed/XzSzjhr74u4"
+          title="Tangzu Wan'er SG II Red Lion video"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+      </template>
+
+      <template data-video="ew200">
+        <iframe
+          class="video-frame"
+          src="https://www.youtube.com/embed/tQlMTJPlXR0"
+          title="Simgot EW200 video"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+      </template>
+
+      <template data-video="7hz71">
+        <iframe
+          class="video-frame"
+          src="https://www.youtube.com/embed/8we8vIUP-7c"
+          title="7Hz 071 video"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+      </template>
+
+      <template data-video="zonie">
+        <iframe
+          class="video-frame"
+          src="https://www.youtube.com/embed/hFlIBzW4gFQ"
+          title="Tripowin Zonie video"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+      </template>
+
+      <template data-video="chu2">
+        <iframe
+          class="video-frame"
+          src="https://www.youtube.com/embed/zAiOxMfZXaQ"
+          title="Moondrop Chu II video"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+      </template>
+
+      <template data-video="jm6">
+        <iframe
+          class="video-frame"
+          src="https://www.youtube.com/embed/_SFDKInkCRk"
+          title="Jcally JM6 Pro video"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+      </template>
+
+      <template data-video="st12">
+        <iframe
+          class="video-frame"
+          src="https://www.youtube.com/embed/yWUfpxKnJmE"
+          title="KBear ST12 video"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+      </template>
+    </div>
+
     <footer class="site-footer">
-      <div class="footer-grid" data-stagger>
+      <div class="footer-grid">
         <div class="footer-brand">
           <img src="img-main/logo.png" alt="Sedoki logo" />
           <div>

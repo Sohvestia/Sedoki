@@ -7,7 +7,7 @@ const PRODUCTS = [
     price: 1559,
     stock: 12,
     description:
-      "A collaboration between 7Hz and Crinacle, the Salnotes Zero:2 is an in-ear monitor with a balanced, easy-to-enjoy sound. A dependable first step into audiophile IEMs at an approachable price.",
+      "An in-ear monitor co-developed by 7Hz and Crinacle, built around a single 10 mm dual-cavity dynamic driver with a PU and metal composite diaphragm. It comes with a detachable 0.78 mm 2-pin silver-plated oxygen-free copper (OFC) coaxial cable and 3.5 mm plug, in a resin shell with a stainless steel faceplate.",
   },
   {
     id: "redlion",
@@ -17,7 +17,7 @@ const PRODUCTS = [
     price: 1599,
     stock: 8,
     description:
-      "A special edition of the Tangzu Wan'er SG II finished in a bold red lion design. Smooth, musical sound in a compact and comfortable shell.",
+      "The Lion Edition of the Tangzu Wan'er S.G II Bass Version, an in-ear monitor with a single 10 mm dynamic driver and an enhanced PET diaphragm. It uses a detachable 0.78 mm 2-pin silver-plated OFC cable, 1.2 m long, with a 3.5 mm plug.",
   },
   {
     id: "ew200",
@@ -27,7 +27,7 @@ const PRODUCTS = [
     price: 2499,
     stock: 5,
     description:
-      "A refined IEM from Simgot with detailed sound and a solid build. Made for listeners who want more resolution and polish than entry-level sets.",
+      "An in-ear monitor from Simgot with a 10 mm dual-magnetic-circuit, dual-cavity dynamic driver and a silicon crystal polymer (SCP) diaphragm, housed in a metal alloy shell. It has detachable 0.78 mm 2-pin connectors and a silver-plated OFC cable with a 3.5 mm plug.",
   },
   {
     id: "7hz71",
@@ -37,7 +37,7 @@ const PRODUCTS = [
     price: 2299,
     stock: 7,
     description:
-      "A compact DAC from 7Hz for upgrading the audio output of your phone or computer. Cleaner sound, more headroom, and an easy plug-and-play setup.",
+      "A USB-C DAC and headphone amplifier dongle from 7Hz, built around the AKM AK4377 chip and supporting up to 32-bit/384 kHz PCM audio. It delivers 70 mW at 32 \u03a9 through a 3.5 mm output and is powered by the connected phone or computer, so it needs no battery.",
   },
   {
     id: "zonie",
@@ -47,7 +47,7 @@ const PRODUCTS = [
     price: null,
     stock: 0,
     description:
-      "An upgrade cable from Tripowin for your IEMs, built for a better fit, cleaner handling, and a sturdier connection.",
+      "An upgrade cable from Tripowin for in-ear monitors, made of 16-core silver-plated copper (SPC) and 1.25 m long, with pre-shaped ear hooks and a cable slider. It is offered with 0.78 mm 2-pin, MMCX or recessed 2-pin connectors and 3.5 mm, 2.5 mm balanced or 4.4 mm balanced plugs.",
   },
   {
     id: "chu2",
@@ -57,7 +57,7 @@ const PRODUCTS = [
     price: 1267,
     stock: 15,
     description:
-      "A popular budget IEM from Moondrop known for clean, well-balanced tuning and a comfortable everyday fit.",
+      "An in-ear monitor from Moondrop with a 10 mm dynamic driver and an aluminum-magnesium alloy composite dome diaphragm, housed in a cast metal alloy shell. It has an impedance of 18 \u03a9, a sensitivity of 119 dB/Vrms, detachable 0.78 mm 2-pin connectors and a 3.5 mm plug.",
   },
   {
     id: "jm6",
@@ -67,7 +67,7 @@ const PRODUCTS = [
     price: 799,
     stock: 20,
     description:
-      "An affordable portable DAC from Jcally that gives your IEMs and headphones a clear upgrade over built-in audio outputs.",
+      "A compact USB-C DAC and amplifier dongle from Jcally, using a Conexant CX31993 DAC chip and a Maxim MAX97220 amplifier chip, with support for up to 32-bit/384 kHz PCM audio. It has a 3.5 mm output, works with in-line CTIA headset mics, and weighs only 6 g.",
   },
   {
     id: "st12",
@@ -77,7 +77,7 @@ const PRODUCTS = [
     price: 667,
     stock: 25,
     description:
-      "A budget-friendly upgrade cable from KBear with a tidy braid and a reliable connection for your favorite IEMs.",
+      "A replacement cable from KBear, designed for in-ear monitors (IEMs), featuring an 8-strand, 4N oxygen-free copper (OFC) silver-plated cable that is 1.2 m long. It is offered with 2-pin, MMCX or recessed 2-pin (QDC) connectors and a 3.5 mm or 4.4 mm balanced plug.",
   },
 ];
 
@@ -85,6 +85,37 @@ const CART_KEY = "sedoki_cart";
 const SALE_KEY = "sedoki_sale";
 const FEATURED_SALE_ID = "zero2";
 const IMAGE_EXTS = ["png", "jpg", "jpeg", "webp"];
+const MARQUEE_REPEATS = 20;
+
+const SOUND_FILES = {
+  addToCart: "audio/add2cart.mp3",
+  checkout: "audio/checkout.mp3",
+  error: "audio/error.mp3",
+};
+const sounds = {};
+
+function initSounds() {
+  Object.entries(SOUND_FILES).forEach(([name, src]) => {
+    const audio = new Audio(src);
+    audio.preload = "auto";
+    sounds[name] = audio;
+  });
+}
+
+function playSound(name) {
+  const audio = sounds[name];
+  if (!audio) return;
+  try {
+    audio.currentTime = 0;
+    const result = audio.play();
+    if (result && result.catch) result.catch(() => {});
+  } catch (e) {}
+}
+
+function notify(message, sound = "error") {
+  playSound(sound);
+  setTimeout(() => alert(message), 80);
+}
 
 const findProduct = (id) => PRODUCTS.find((p) => p.id === id);
 const productUrl = (p) => `product.html?p=${encodeURIComponent(p.id)}`;
@@ -172,7 +203,7 @@ document.addEventListener(
 function productCardHtml(p, { index = 0, carousel = false } = {}) {
   const attrs = carousel
     ? 'class="product-card carousel-item"'
-    : `class="product-card" data-reveal style="--d: ${Math.min(index, 6) * 50}ms"`;
+    : `class="product-card" data-reveal style="--d: ${Math.min(index, 6) * 30}ms"`;
   return `
     <article ${attrs} data-id="${p.id}">
       <a class="product-link" href="${productUrl(p)}">
@@ -193,7 +224,7 @@ function observeReveals() {
     Array.from(parent.children).forEach((child, i) => {
       if (child.hasAttribute("data-reveal")) return;
       child.setAttribute("data-reveal", "");
-      child.style.setProperty("--d", `${Math.min(i, 5) * 60}ms`);
+      child.style.setProperty("--d", `${Math.min(i, 5) * 35}ms`);
     });
   });
 
@@ -218,11 +249,13 @@ function observeReveals() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  initSounds();
   initNavMetrics();
+  initNavMenu();
   initBackToTop();
   initSaleMarquee();
   fillCarousels();
-  initCarousels();
+  document.querySelectorAll(".carousel").forEach(initSingleCarousel);
   initCatalog();
   initProductPage();
   initAccountTabs();
@@ -238,6 +271,32 @@ function initNavMetrics() {
     document.documentElement.style.setProperty("--nav-h", `${nav.offsetHeight}px`);
   update();
   window.addEventListener("resize", update);
+}
+
+function initNavMenu() {
+  const nav = document.querySelector("nav");
+  const toggle = document.getElementById("navToggle");
+  const menu = document.getElementById("navMenu");
+  if (!nav || !toggle || !menu) return;
+
+  const setOpen = (open) => {
+    nav.classList.toggle("menu-open", open);
+    toggle.setAttribute("aria-expanded", String(open));
+  };
+
+  toggle.addEventListener("click", () => setOpen(!nav.classList.contains("menu-open")));
+  nav.addEventListener("click", (e) => {
+    if (e.target.closest("#navMenu a, #cartToggle")) setOpen(false);
+  });
+  document.addEventListener("click", (e) => {
+    if (!nav.contains(e.target)) setOpen(false);
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") setOpen(false);
+  });
+  window.matchMedia("(min-width: 1001px)").addEventListener("change", (e) => {
+    if (e.matches) setOpen(false);
+  });
 }
 
 function initBackToTop() {
@@ -264,7 +323,7 @@ function initSaleMarquee() {
     return `<a href="${productUrl(p)}"><strong>${escapeHtml(p.name)}</strong> <em>${SALES[id]}% OFF</em></a>`;
   });
 
-  el.innerHTML = items.join(sep) + sep;
+  el.innerHTML = (items.join(sep) + sep).repeat(MARQUEE_REPEATS);
 }
 
 function fillCarousels() {
@@ -276,10 +335,6 @@ function fillCarousels() {
       .map((p) => productCardHtml(p, { carousel: true }))
       .join("");
   });
-}
-
-function initCarousels() {
-  document.querySelectorAll(".carousel").forEach(initSingleCarousel);
 }
 
 function initSingleCarousel(carousel) {
@@ -384,8 +439,9 @@ function initAccountTabs() {
   forms.forEach((form) => {
     form.querySelector("form")?.addEventListener("submit", (e) => {
       e.preventDefault();
-      alert(
+      notify(
         "This is a demo form \u2014 account creation isn't connected to a server yet.",
+        "error",
       );
     });
   });
@@ -530,6 +586,23 @@ function stockStatus(p) {
   return { cls: "in", text: `${p.stock} in stock` };
 }
 
+function dropdownHtml(className, title, bodyHtml) {
+  return `
+    <section class="manual-section" data-reveal>
+      <details class="manual ${className}">
+        <summary>${title}</summary>
+        <div class="manual-body">${bodyHtml}</div>
+      </details>
+    </section>`;
+}
+
+function specsHtml(p) {
+  const template = document.querySelector(`template[data-spec="${p.id}"]`);
+  return template
+    ? template.innerHTML
+    : '<p class="manual-missing">Specifications are coming soon.</p>';
+}
+
 function initProductPage() {
   const root = document.getElementById("productDetail");
   if (!root) return;
@@ -542,13 +615,24 @@ function initProductPage() {
   }
 
   const stock = stockStatus(p);
+  const name = escapeHtml(p.name);
   document.title = `${p.name} - Sedoki`;
   root.innerHTML = `
     <article class="product-detail">
-      <div class="detail-media" data-reveal="left">${saleBadgeHtml(p)}${productImgHtml(p)}</div>
+      <div class="detail-media" data-reveal="left">
+        ${saleBadgeHtml(p)}
+        <div class="gallery" tabindex="0" aria-roledescription="carousel" aria-label="${name} images">
+          <div class="gallery-track">
+            <div class="gallery-slide">${productImgHtml(p)}</div>
+          </div>
+          <button type="button" class="gallery-arrow prev" aria-label="Previous image" hidden>&#10094;</button>
+          <button type="button" class="gallery-arrow next" aria-label="Next image" hidden>&#10095;</button>
+          <div class="gallery-dots" hidden></div>
+        </div>
+      </div>
       <div class="detail-info" data-reveal="right">
         <span class="product-tag">${escapeHtml(p.category)}</span>
-        <h1>${escapeHtml(p.name)}</h1>
+        <h1>${name}</h1>
         <p class="detail-brand">Brand: <strong>${escapeHtml(p.brand)}</strong></p>
         <div class="price detail-price">${priceHtml(p)}</div>
         <p class="stock-status ${stock.cls}">${stock.text}</p>
@@ -556,21 +640,106 @@ function initProductPage() {
         <button type="button" class="add-to-cart" data-id="${p.id}"${isAvailable(p) ? "" : " disabled"}>Add to Cart</button>
       </div>
     </article>
-    <section class="manual-section" data-reveal>
-      <details class="manual">
-        <summary>Product Manual</summary>
-        <div class="manual-body">
-          <iframe class="manual-frame" title="${escapeHtml(p.name)} manual"></iframe>
-          <p class="manual-missing" hidden>No manual is available for this product yet.</p>
-        </div>
-      </details>
-    </section>`;
+    ${dropdownHtml("specs-panel", "Specifications", specsHtml(p))}
+    ${dropdownHtml(
+      "manual-pdf",
+      "Manual",
+      `<iframe class="manual-frame" title="${name} manual"></iframe>
+       <p class="manual-missing" hidden>No manual is available for this product yet.</p>`,
+    )}
+    ${dropdownHtml(
+      "manual-video",
+      "Promotional Video",
+      `<div class="video-slot"></div>
+       <p class="manual-missing" hidden>No video is available for this product yet.</p>`,
+    )}`;
 
+  initGallery(p);
   initManualViewer(p);
+  initVideoViewer(p);
+}
+
+function imageLoads(url) {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => resolve(true);
+    img.onerror = () => resolve(false);
+    img.src = url;
+  });
+}
+
+async function findExtraImages(p) {
+  const found = [];
+  for (let n = 2; n <= 12; n++) {
+    const urls = IMAGE_EXTS.map((ext) => `products/${p.id}/${p.id}-img${n}.${ext}`);
+    const results = await Promise.all(urls.map(imageLoads));
+    const hit = urls[results.indexOf(true)];
+    if (!hit) break;
+    found.push(hit);
+  }
+  return found;
+}
+
+async function initGallery(p) {
+  const gallery = document.querySelector(".gallery");
+  const track = gallery.querySelector(".gallery-track");
+  const prevBtn = gallery.querySelector(".gallery-arrow.prev");
+  const nextBtn = gallery.querySelector(".gallery-arrow.next");
+  const dotsWrap = gallery.querySelector(".gallery-dots");
+
+  const extras = await findExtraImages(p);
+  if (extras.length === 0) return;
+
+  extras.forEach((url, i) => {
+    track.insertAdjacentHTML(
+      "beforeend",
+      `<div class="gallery-slide"><img src="${url}" alt="${escapeHtml(p.name)} - image ${i + 2}" draggable="false" /></div>`,
+    );
+  });
+
+  const total = track.children.length;
+  let index = 0;
+
+  dotsWrap.innerHTML = Array.from(
+    { length: total },
+    (_, i) => `<button type="button" class="gallery-dot" aria-label="Show image ${i + 1}"></button>`,
+  ).join("");
+  [prevBtn, nextBtn, dotsWrap].forEach((el) => (el.hidden = false));
+
+  function goTo(i) {
+    index = (i + total) % total;
+    track.style.transform = `translateX(-${index * 100}%)`;
+    Array.from(dotsWrap.children).forEach((dot, n) =>
+      dot.classList.toggle("active", n === index),
+    );
+  }
+
+  prevBtn.addEventListener("click", () => goTo(index - 1));
+  nextBtn.addEventListener("click", () => goTo(index + 1));
+  dotsWrap.addEventListener("click", (e) => {
+    const dot = e.target.closest(".gallery-dot");
+    if (dot) goTo(Array.from(dotsWrap.children).indexOf(dot));
+  });
+  gallery.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft") goTo(index - 1);
+    else if (e.key === "ArrowRight") goTo(index + 1);
+  });
+
+  let startX = null;
+  track.addEventListener("pointerdown", (e) => (startX = e.clientX));
+  track.addEventListener("pointerup", (e) => {
+    if (startX === null) return;
+    const dx = e.clientX - startX;
+    startX = null;
+    if (Math.abs(dx) > 40) goTo(index + (dx < 0 ? 1 : -1));
+  });
+  track.addEventListener("pointercancel", () => (startX = null));
+
+  goTo(0);
 }
 
 function initManualViewer(p) {
-  const details = document.querySelector(".manual");
+  const details = document.querySelector(".manual-pdf");
   const frame = details.querySelector(".manual-frame");
   const missing = details.querySelector(".manual-missing");
   const url = `products/${p.id}/${p.id}.pdf`;
@@ -588,6 +757,22 @@ function initManualViewer(p) {
       frame.hidden = true;
       missing.hidden = false;
     }
+  });
+}
+
+function initVideoViewer(p) {
+  const details = document.querySelector(".manual-video");
+  const slot = details.querySelector(".video-slot");
+  const missing = details.querySelector(".manual-missing");
+  const template = document.querySelector(`template[data-video="${p.id}"]`);
+
+  details.addEventListener("toggle", () => {
+    if (!template) {
+      missing.hidden = !details.open;
+      return;
+    }
+    if (details.open) slot.replaceChildren(template.content.cloneNode(true));
+    else slot.replaceChildren();
   });
 }
 
@@ -627,12 +812,14 @@ function saveCart(items) {
 
 function updateCartItem(id, delta) {
   const p = findProduct(id);
-  if (!p) return;
+  if (!p) return false;
   const items = readCart();
   const item = items.find((i) => i.id === id);
+  if (delta > 0 && item && item.qty >= p.stock) return false;
   if (item) item.qty = Math.min(item.qty + delta, p.stock);
   else if (delta > 0) items.push({ id, qty: 1 });
   saveCart(items.filter((i) => i.qty > 0));
+  return true;
 }
 
 const removeFromCart = (id) => saveCart(readCart().filter((i) => i.id !== id));
@@ -739,12 +926,13 @@ function initCartDrawer() {
   const runCheckout = () => {
     const lines = cartLines();
     if (lines.length === 0) {
-      alert("Your cart is empty.");
+      notify("Your cart is empty.", "error");
       return;
     }
-    alert(
+    notify(
       "This is a demo checkout \u2014 there's no payment processor connected yet. Subtotal: " +
         formatPHP(cartSubtotal(lines)),
+      "checkout",
     );
   };
   document.getElementById("drawerCheckoutBtn")?.addEventListener("click", runCheckout);
@@ -754,15 +942,16 @@ function initCartDrawer() {
     const addBtn = e.target.closest(".add-to-cart");
     if (addBtn) {
       if (!addBtn.disabled) {
-        updateCartItem(addBtn.dataset.id, 1);
-        setDrawer(true);
+        playSound(updateCartItem(addBtn.dataset.id, 1) ? "addToCart" : "error");
       }
       return;
     }
     const actionBtn = e.target.closest("[data-cart-action]");
     if (!actionBtn) return;
     const { cartAction, id } = actionBtn.dataset;
-    if (cartAction === "inc") updateCartItem(id, 1);
+    if (cartAction === "inc") {
+      if (!updateCartItem(id, 1)) playSound("error");
+    }
     else if (cartAction === "dec") updateCartItem(id, -1);
     else if (cartAction === "remove") removeFromCart(id);
   });
